@@ -163,7 +163,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "download") {
     
     
     
-<button id="test">klik</button>    
+<button id="test">klik</button>     
     <div class="slider-for">
 
     <form method="POST" action="Paycheck.php">
