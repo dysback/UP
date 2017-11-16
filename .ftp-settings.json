@@ -1,0 +1,12 @@
+{
+  "host": "ftp.realpaystubdownload.com",
+  "port": 21,
+  "secure":false,
+  "user": "realpaystubdownl",
+  "password": "P@ssword123",
+  "connTimeout":10000,
+  "pasvTimeout":10000,
+  "keepalive":10000,
+  "path":"/public_html"
+
+}

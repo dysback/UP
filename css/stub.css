@@ -1,13 +1,14 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #ccc;
+/*    background-color: #ccc;*/
 }
 table {
     width: 100%;
 }
 
 td,th {
-    border:none; 
+    border:none;
+    padding: 7px;
 }
 
 thead {
@@ -23,11 +24,13 @@ thead {
 .top-radius {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    border-collapse: separate;
 }
 
 .bottom-radius {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    border-collapse: separate;
 }
 
 .ro {
@@ -36,14 +39,121 @@ thead {
     border-right: none;
 }
 
-
-.slick-prev:before, .slick-next:before { 
+.slick-prev:before, .slick-next:before {
     color: #07e !important;
 }
-
-
 
 .xfa {
     position: absolute;
     /*top: 50%;*/
+}
+
+#step-1 {
+    margin: 30px;
+}
+
+#step-1 div {
+    /*height: 300px;*/
+    width: 800px;
+}
+
+.panel-flat {
+    max-width: 1100px;
+    display: table;
+    margin: 0 auto;
+}
+
+
+.slider-nav {
+  height: 615px;
+}
+
+
+
+.form1 .header1 {
+  color: #fff;
+  background-color: #444;
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.very-wide {
+  width: 600px;
+  font-size: 15px;
+}
+.wide {
+  width: 350px;
+}
+
+.semi-wide {
+  width: 160px;
+}
+
+input {
+  width: 100px;
+  background-color: #eec;
+}
+
+.border2top {
+  border-top: 3px solid #000;
+}
+.border2LR {
+  border-left: 3px solid #000;
+  border-right: 3px solid #000;
+}
+.border2R {
+  border-right: 3px solid #000;
+}
+
+.border2bottom {
+  border-bottom: 3px solid #000;
+}
+.border2all {
+  border: 3px solid #000;
+}
+
+
+.form1 input, #step-2 input{
+  border: 1px dashed #000;
+}
+
+.gray td, .gray input {
+  background-color: #ddd;
+}
+
+.gray input {
+  font-weight: 600;
+}
+.gray2 td {
+  background-color: #eee;
+}
+
+.top {
+  vertical-align: top;
+}
+
+.t1 {
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.t2 {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.low td {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.center {
+  text-align: center;
 }
