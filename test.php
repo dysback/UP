@@ -89,6 +89,6 @@ $pdf->SetFont('Arial','I', 9);
 $pdf->Cell(60,10,'Powered by FPDF.',0,1,'C');
 $pdf->SetFont('Arial','', 12);
 $pdf->Cell(100,10,'11/07/2017');
-$pdf->Output("testIIS.pdf", "D"); 
+$pdf->Output("testIIS.pdf", "D");
 
 // phpinfo();

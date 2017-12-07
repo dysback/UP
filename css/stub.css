@@ -157,3 +157,40 @@ input {
 .center {
   text-align: center;
 }
+
+
+select.input-xxs {
+    height: 26px;
+    line-height: 24px;
+}
+.input-xxs {
+    height: 26px;
+    padding: 5px 10px;
+    font-size: inherit;
+    line-height: 1.6666667;
+    border-radius: 2px;
+}
+
+.element {
+    float: left;
+    line-height: 28px;
+}
+.r-element {
+    float: right;
+    /*line-height: 28px;*/
+}
+
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-psgblue,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-psgblue {
+  color: #fff;
+  background: #09e;
+}
+
+.c-panel {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 4px;
+
+}

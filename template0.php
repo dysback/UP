@@ -1,3 +1,6 @@
+<?php
+  require_once "cPanel.php";
+ ?>
                 <form method="POST" action="Paycheck.php">
                     <table>
                         <tr>

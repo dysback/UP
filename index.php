@@ -5,7 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Pay Stub Generator</title>
-
+	<!--<link rel="icon" href="favicon.png">-->
+	<link href="favicon.ico?v=2" rel="icon" type="image/x-icon" />
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -29,6 +30,7 @@
 	<script type="text/javascript" src="assets/js/plugins/forms/wizards/stepy.min.js"></script>
 	<script type="text/javascript" src="assets/js/plugins/notifications/sweet_alert.min.js"></script>
 
+	<script type="text/javascript" src="assets/js/plugins/forms/styling/bootstrap-switch.min.js"></script>
 	<!-- Theme JS files -->
 	<script type="text/javascript" src="../assets/js/core/app.js"></script>
 	<!-- /theme JS files -->
@@ -96,7 +98,7 @@
 				<div class="panel panel-flat">
 
 					<div class="panel-body">
-						
+
 						<form class="stepy-basic" action="#">
 							<fieldset title="Step 1">
 								<legend class="text-semibold">Select template</legend>

@@ -41,7 +41,7 @@ $(document).ready(function(){
         //swal("Congratulations", "You successfully created Paycheck", "success");
 
         return false;
-x
+
     });
 
     $("#cardNumber").keyup(function() {
@@ -66,7 +66,7 @@ x
 });
 
 function onStep(s) {
-    console.log(s, _step);
+    //console.log(s, _step);
     if(s==2 && _step==1)
     {
       $("#step-2").load("template" + a[0].slick.currentSlide + ".php");
