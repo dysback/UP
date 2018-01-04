@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
 /*    background-color: #ccc;*/
 }
 table {
@@ -22,14 +23,14 @@ thead {
 }
 
 .top-radius {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border-collapse: separate;
 }
 
 .bottom-radius {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     border-collapse: separate;
 }
 
@@ -52,9 +53,11 @@ thead {
     margin: 30px;
 }
 
+
 #step-1 div {
     /*height: 300px;*/
     width: 800px;
+    margin: 0px auto;
 }
 
 .panel-flat {
@@ -94,7 +97,8 @@ thead {
 
 input {
   width: 100px;
-  background-color: #eec;
+  background-color: #ffd;
+  color: #333;
 }
 
 .border2top {
@@ -193,4 +197,87 @@ select.input-xxs {
   padding: 12px;
   border-radius: 4px;
 
+}
+
+.bootstrap-switch-wrapper {
+  border-radius: 10px;
+  height: 35px;
+}
+
+
+#deposit-slip {
+  border-top: 1px dashed;
+  margin: 20px -40px;
+  padding: 10px 40px;
+  display: none;
+}
+
+.minipad {
+  text-align: center;
+}
+.minipad td , .minipad th {
+  padding: 0px;
+}
+
+.midpad td, .midpad th {
+  padding: 1px;
+}
+
+.blues {
+  color: #09e;
+}
+.grays {
+  color: #999;
+}
+
+.stepy-navigator {
+  margin-top: 20px;
+}
+
+#pay_date_root, .picker--focused{
+  top: unset;
+}
+
+.noedit {
+  border: none !important;
+  background-color: #fff !important;
+}
+
+.hebo th {
+  border: 1px solid #09c;
+  text-align: center;
+}
+
+th {
+  text-align: center;
+  font-weight: 600;
+}
+
+.right {
+  text-align: right;
+}
+
+
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+.add-check {
+  /*
+  display: inline-block;
+  height: 25px;
+  width: auto;
+
+  */
+  padding: 2px 14px 2px 5px;
+  border-radius: 3px;
+  border: 1px solid #333 !important;
+  margin: 3px 10px;
+  background-color: #fff;
 }

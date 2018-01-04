@@ -1,4 +1,5 @@
 var _step = 1;
+var formQ = "";
 
 $(document).ready(function(){
 
@@ -63,26 +64,150 @@ $(document).ready(function(){
           window.location='/getPdf.php?filename=' + error.PDFurl;
         }
     });
+
+
+
 });
 
 function onStep(s) {
-    //console.log(s, _step);
-    if(s==2 && _step==1)
+
+    if(s == 2 && _step == 1)
     {
-      $("#step-2").load("template" + a[0].slick.currentSlide + ".php");
+      $("#step-2").load("template" + a[0].slick.currentSlide + ".php", function() {
+        var $input = $("#pay_date").pickadate({
+          format: 'mm/dd/yyyy',
+        });
+        picker = $input.pickadate('picker');
+        pay_date = picker.get('select').obj;
+
+        $("#ssn").formatter({
+          'pattern': '{{999}}-{{99}}-{{9999}}',
+          'persistent': false,
+        });
+
+        $("#pay_date").on('change', function() {
+          calcCurrent_pay();
+          $("#dep_paydate").html(pay_date.format("m/d/Y"));
+        });
+
+        $("#stub_number").on('input', function() {
+          console.log($("#stub_number").val());
+          $("#dep_stub_number").html($("#stub_number").val());
+        });
+
+        $("#rate").on('input', function() {
+          calcCurrent_pay();
+          rate = $(this).val();
+
+          //$("#current_pay").val($("#rate").val() * $("#hours").val());
+        });
+
+        $("#rate").on('blur', function() {
+          $(this).val(($(this).val() * 1).toFixed(2));
+        })
+
+        $("#hours").on('input', function() {
+          calcCurrent_pay();
+        });
+
+        $("#nos").on("change", function() {
+          calcCurrent_pay();
+        });
+
+        $("#period").on("change", function() {
+          calcCurrent_pay();
+          /*
+          console.log(pay_date);
+          $("#additional-checks").append('<div class="add-stub">Type the Pay Date and Pay Period for each additonal stub selected.<br /><br /></div>');
+          for(var i = 0; i < $("#period").val(); i++) {
+            var ads = $("#additional-checks").append('<div></div>');
+            ads.append('Stub ' + i);
+            ads.append('<input type="text" id="paydate' + i + '" class="pickadate add-check" name="paydate[' + i + ']">');
+            ads.append('<input type="text" class="add-check" name="rperiod[' + i + ']">');
+            ads.append(' hours: ' + i);
+            ads.append('<input type="number" class="add-check" name="hrs[' + i + ']">');
+            ads.append('<input type="checkbox" name="dslip[' + i + ']">');
+            ads.append(' Deposit slip (+ $4.99)');
+          }
+          $(".pickadate").pickadate({
+            format: 'mm/dd/yyyy',
+          });
+          */
+        });
+        $("#employee_name").on('input', function() {
+          console.log($("#employee_name").val());
+          $(".depo_en").html($("#employee_name").val());
+        });
+
+        $("#employee_address").on('input', function() {
+          $(".depo_esa").html($("#employee_address").val());
+        });
+
+        $("#auto").on("change", function() {
+          auto = !auto;
+
+          $("#current_pay").toggleClass("noedit").prop("readonly", !$("#current_pay").prop("readonly"));
+          $("#fica_mc").toggleClass("noedit").prop("readonly", !$("#fica_mc").prop("readonly"));
+          $("#fica_ss").toggleClass("noedit").prop("readonly", !$("#fica_ss").prop("readonly"));
+          $("#fica_tax").toggleClass("noedit").prop("readonly", !$("#fica_tax").prop("readonly"));
+          $("#fica_stax").toggleClass("noedit").prop("readonly", !$("#fica_stax").prop("readonly"));
+          $("#fica_sditax").toggleClass("noedit").prop("readonly", !$("#fica_sditax").prop("readonly"));
+          $("#ficay_mc").toggleClass("noedit").prop("readonly", !$("#ficay_mc").prop("readonly"));
+          $("#ficay_ss").toggleClass("noedit").prop("readonly", !$("#ficay_ss").prop("readonly"));
+          $("#ficay_tax").toggleClass("noedit").prop("readonly", !$("#ficay_tax").prop("readonly"));
+          $("#ficay_stax").toggleClass("noedit").prop("readonly", !$("#ficay_stax").prop("readonly"));
+          $("#ficay_sditax").toggleClass("noedit").prop("readonly", !$("#ficay_sditax").prop("readonly"));
+
+          $("#ytd_gross").toggleClass("noedit").prop("readonly", !$("#ytd_gross").prop("readonly"));
+          $("#ytd_deductions").toggleClass("noedit").prop("readonly", !$("#ytd_deductions").prop("readonly"));
+          $("#ytd_net_pay").toggleClass("noedit").prop("readonly", !$("#ytd_net_pay").prop("readonly"));
+          $("#total").toggleClass("noedit").prop("readonly", !$("#total").prop("readonly"));
+          $("#deductions").toggleClass("noedit").prop("readonly", !$("#deductions").prop("readonly"));
+          $("#net_pay").toggleClass("noedit").prop("readonly", !$("#net_pay").prop("readonly"));
+          calcCurrent_pay();
+        });
+
+        $("#state").on("change", function() {
+          var states = new States();
+          stateTax = states.stateList[$("#state").val()];
+          if(stateTax.tax > 0) {
+            $("#stax").attr( "style", "");
+          } else {
+            $("#fica_stax").val("");
+            $("#ficay_stax").val("");
+            $("#stax").attr( "style", "visibility: hidden;");
+          }
+          if($("#state").val() == "ca") {
+            $("#sditax").attr( "style", "");
+          } else {
+            $("#fica_sditax").val("");
+            $("#ficay_sditax").val("");
+            $("#sditax").attr( "style", "visibility: hidden;");
+          }
+          calcCurrent_pay();
+        });
+
+        calcCurrent_pay();
+      });
+
+
     }
     if(s==3)
     {
       formQ = $("form").serialize();
-      $("#step-3").load("template" + a[0].slick.currentSlide + "f.php?" + formQ);
+      console.log("RQ: ", $("form").serializeArray());
+      $("#step-3").load("template" + a[0].slick.currentSlide + "f.php?" + formQ, function() {
+        calcCurrent_pay();
+        $(".depo_en").html($("#employee_name").val());
+        $(".depo_esa").html($("#employee_address").val());
+      });
     }
-
     _step = s;
 }
 var error;
 function onFinish(e1, e2) {
   var formP = $(".stepy-basic").serialize();
-  var url = "generateAndCharge.php?" + formP;
+  var url = "generateAndCharge.php?" + formP + "&" + formQ;
   //console.log("url", url);
   $.ajax({
     url: url,
@@ -96,12 +221,15 @@ function onFinish(e1, e2) {
   });
 }
 
+function daysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
 
-
-
-
-
-
+function daysInMonthDate(date) {
+  month = date.getMonth() + 1;
+  year = date.getFullYear();
+  return daysInMonth(month, year);
+}
 
 function validateInput(input, pattern, minLenght, maxLength) {
     r = 0
@@ -113,7 +241,6 @@ function validateInput(input, pattern, minLenght, maxLength) {
         input = input.substr(0, maxLength);
         r = -3;
     }
-
 
     ret = "";
     count = 0;
@@ -128,12 +255,8 @@ function validateInput(input, pattern, minLenght, maxLength) {
         }
     }
     input = ret;
-
-
     return input;
 }
-
-
 
 
 function checkValue(str, max) {

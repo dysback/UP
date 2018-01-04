@@ -3,6 +3,10 @@ require_once "lib.php";
 require_once "authorize.php";
 require_once 'vendor/autoload.php';
 require_once "createPDF.php";
+
+$filename = "dydy.pdf";//time() . ".pdf";
+$PDFresp = createPDF(Config::$PDF_LOCATION . "/$filename");
+die($PDFresp);
 //die("RQ: " . print_r($_REQUEST, true));
 $amount = Config::$TRANSACTION_AMOUNT["AMOUNT_PAYCHECK"];
 
