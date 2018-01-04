@@ -1,6 +1,3 @@
-<?php
-ech
-?>
 <div class="c-panel">
   <span class="element">number of stubs</span>
   <span class="col-xs-1">
@@ -91,10 +88,10 @@ ech
   </span>
   <span class="element">Entire SSN</span>
   <span class="r-element">
-    <a href="#" id="advanced">Advanced</a>
+    <a id="advanced">Advanced</a>
   </span>
   <br /><br />
-<div id="d-adv">
+<div id="d-adv" style="overflow: visible; height: 40px; display: none" >
   <span class="element">Marital status</span>
   <span class="col-xs-2">
     <select name="marital" id="marital" class="form-control input-xxs">
@@ -105,6 +102,7 @@ ech
   <span class="element">Exemptions</span>
   <span class="col-xs-1">
     <select name ="exemptions" id="exemptions" class="form-control input-xxs">
+      <option value="0">0</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -114,13 +112,11 @@ ech
       <option value="7">7</option>
       <option value="8">8</option>
       <option value="9">9</option>
-      <option value="10">10</option>
     </select>
   </span>
   <span class="element">Pay Period YTD</span>
   <span class="col-xs-1">
     <select name ="period" id="period" class="form-control input-xxs">
-      <option value="0"></option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -183,46 +179,131 @@ ech
     </select>
   </span>
 </div>
-  <br /><br />
-
+  <!--<br /><br />-->
+<div style="clear:both"></div>
   <span class="col-xs-3"><input type="checkbox" name="ec" id="ec"></span>
   <span class="col-xs-3"><input type="checkbox" name="hs" id="hs"></span>
-  <span class="element">Annual: </span>
-  <span class="col-xs-2">
-    <input type="text" name="annual" id="annual"  class="form-control input-xxs" />
+  <span id="sAnnual" style="display: none;">
+    <span class="element">Annual: </span>
+    <span class="col-xs-2">
+      <input type="text" name="annual" id="annual" class="form-control input-xxs" />
+    </span>
   </span>
   <br /><br />
-
   Deposit slip (+4.99): <input type="checkbox" name="deposit" id="deposit" >
 </div>
+<script type="text/javascript" src="/js/taxes.js"></script>
 <script>
+  //$.getScript('/js/taxes.js');
+  var mode = "E";
+  var sMode = "H";
+  var auto = true;
+  var e_rp
+  var s_rp
+  var pay_date, picker;
+  var frequency = 1;
+  var arrFrequency = [0, 1, 2, 2, 4, 1];
+  var rate;
+
+
   $(document).ready(function() {
     $("#ec").bootstrapSwitch({
     		onText: "Employee",
         offText: "Contractor",
         onColor: "psgblue",
         offColor: "psgblue",
+        onSwitchChange: function() {
+          if(mode == "E") {
+            mode = "C";
+            $("#c-e").html("CONTRACTOR NAME / ADDRESS");
+            $("#c-eID").html("CONTRACTOR ID");
+            $("#employee_name").attr("placeholder", "Contractor name here");
+            $("#employee_address").attr("placeholder", "Contractor address here");
+
+            $("#fica_mc").val("0.00");
+            $("#fica_ss").val("0.00");
+            $("#fica_tax").val("0.00");
+
+            $("#ficay_mc").val("0.00");
+            $("#ficay_ss").val("0.00");
+            $("#ficay_tax").val("0.00");
+
+            $("#deductions").val("0.00");
+            $("#net_pay").val("0.00");
+            $("#ytd_deductions").val("0.00");
+            $("#ytd_net_pay").val("0.00");
+
+
+          } else {
+            mode = "E";
+            $("#c-e").html("EMPLOYEE NAME / ADDRESS");
+            $("#c-eID").html("EMPLOYEE ID");
+            $("#employee_name").attr("placeholder", "Employee name here");
+            $("#employee_address").attr("placeholder", "Employee address here");
+            calcCurrent_pay();
+          }
+        },
     });
+
     $("#hs").bootstrapSwitch({
-    		onText: "Hourly",
-        offText: "Salary",
-        onColor: "psgblue",
-        offColor: "psgblue",
+      onText: "Salary",
+      offText: "Hourly",
+      onColor: "psgblue",
+      offColor: "psgblue",
+      onSwitchChange: function() {
+        $("#sAnnual").toggle();
+        $("#current_pay").toggleClass("noedit");
+        $("#hours").toggle();
+        if(sMode == "H") {
+          sMode = "S";
+          rate = $("#rate").val();
+          $("#rate").attr("type", "text");
+          $("#rate").val("Salary");
+          $("#current_pay").prop("readonly", false);
+
+        } else {
+          sMode = "H";
+          $("#rate").attr("type", "number");
+          $("#rate").val(rate);
+          $("#current_pay").prop("readonly", true);
+          calcCurrent_pay();
+        }
+      },
+
     });
+
     $("#deposit").bootstrapSwitch({
-  		onText: "Yes",
+      onText: "Yes",
       offText: "No",
       onColor: "psgblue",
       offColor: "psgblue",
+      onSwitchChange: function() {
+        $("#deposit-slip").slideToggle();
+      },
+
   	});
 
     $("#advanced").click(function() {
-      //$("#d-adv").toggle();
-      $("#d-adv").animate({
-
-        height: "0px",
-      });
+      $("#d-adv").slideToggle();
     });
+
+    $("#deposit").click(function() {
+      $("#deposit-slip").slideToggle();
+    });
+
+    $("#frequency").change(function() {
+      var oldf = arrFrequency[frequency]
+      frequency = $(this).val();
+      //console.log(oldf, frequency);
+      $("#hours").val(Math.round($("#hours").val() * arrFrequency[frequency] / arrFrequency[oldf]));
+      var fr = new FederalTax();
+      console.log(fr.frequency[frequency].periods);
+
+      setOpionNrRange("#period", 1, fr.frequency[$(this).val()].periods);
+      calcCurrent_pay();
+    });
+
+
   })
 
 </script>

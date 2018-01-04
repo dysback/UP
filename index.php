@@ -29,14 +29,20 @@
 	<script type="text/javascript" src="../assets/js/plugins/ui/drilldown.js"></script>
 	<script type="text/javascript" src="assets/js/plugins/forms/wizards/stepy.min.js"></script>
 	<script type="text/javascript" src="assets/js/plugins/notifications/sweet_alert.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/pickers/pickadate/picker.js"></script>
 
 	<script type="text/javascript" src="assets/js/plugins/forms/styling/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/pickers/pickadate/picker.date.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/inputs/formatter.js"></script>
 	<!-- Theme JS files -->
 	<script type="text/javascript" src="../assets/js/core/app.js"></script>
 	<!-- /theme JS files -->
 	<script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
 
 	<script type="text/javascript" src="/js/lscript.js"></script>
+	<script type="text/javascript" src="/js/lib.js"></script>
+	<script type="text/javascript" src="/js/calc.js"></script>
+<!--	<script type="text/javascript" src="/js/taxes.js"></script> -->
 </head>
 
 <body>
@@ -50,7 +56,6 @@
 				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
 			</ul>
 		</div>
-
 		<div class="navbar-collapse collapse" id="navbar-mobile">
 			<ul class="nav navbar-nav">
 				<li><a href="#">Home</a></li>

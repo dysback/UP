@@ -63,13 +63,125 @@ $(document).ready(function(){
           window.location='/getPdf.php?filename=' + error.PDFurl;
         }
     });
+
+
+
 });
 
 function onStep(s) {
     //console.log(s, _step);
-    if(s==2 && _step==1)
+    if(s == 2 && _step == 1)
     {
-      $("#step-2").load("template" + a[0].slick.currentSlide + ".php");
+      $("#step-2").load("template" + a[0].slick.currentSlide + ".php", function() {
+        var $input = $("#pay_date").pickadate({
+          format: 'mm/dd/yyyy',
+        });
+
+        picker = $input.pickadate('picker');
+
+        //$("#ssn").val("1");
+        $("#ssn").formatter({
+          'pattern': '{{999}}-{{99}}-{{9999}}',
+          'persistent': false,
+        });
+
+        $("#pay_date").change(function() {
+          pay_date = picker.get('select').obj;
+
+          if(frequency == 1) {
+            pay_date2 = new Date(pay_date - 2 * 86400000);
+            pay_date9 = new Date(pay_date - 8 * 86400000);
+          } else if (frequency == 2) {
+            pay_date2 = new Date(pay_date - 3 * 86400000);
+            pay_date9 = new Date(pay_date - 16 * 86400000);
+
+          } else if (frequency == 3) {
+            pay_date2 = new Date(pay_date - 3 * 86400000);
+            var md = daysInMonthDate(pay_date2);
+            md = Math.round(md / 2) + 2;
+            pay_date9 = new Date(pay_date - md * 86400000);
+
+          } else if (frequency == 4) {
+            pay_date2 = new Date(pay_date - 3 * 86400000);
+            var md = daysInMonthDate(pay_date2);
+            md = md + 2;
+            pay_date9 = new Date(pay_date - md * 86400000);
+
+          } else if (frequency == 5) {
+            pay_date2 = new Date(pay_date - 3 * 86400000);
+            md = 365;
+            pay_date9 = new Date(pay_date - md * 86400000);
+          }
+          //console.log(frequency, pay_date, pay_date2, pay_date9);
+          $("#reporting_period").val(pay_date9.format("m/d/Y") + " - " + pay_date2.format("m/d/Y"));
+        });
+
+        $("#rate").on('input', function() {
+          calcCurrent_pay();
+          rate = $(this).val();
+
+          //$("#current_pay").val($("#rate").val() * $("#hours").val());
+        });
+
+        $("#rate").on('blur', function() {
+          $(this).val(($(this).val() * 1).toFixed(2));
+        })
+
+        $("#hours").on('input', function() {
+          calcCurrent_pay();
+        });
+
+        $("#period").on("change", function() {
+          calcCurrent_pay();
+        })
+        $("#auto").on("change", function() {
+          auto = !auto;
+
+          $("#current_pay").toggleClass("noedit").prop("readonly", !$("#current_pay").prop("readonly"));
+          $("#fica_mc").toggleClass("noedit").prop("readonly", !$("#fica_mc").prop("readonly"));
+          $("#fica_ss").toggleClass("noedit").prop("readonly", !$("#fica_ss").prop("readonly"));
+          $("#fica_tax").toggleClass("noedit").prop("readonly", !$("#fica_tax").prop("readonly"));
+          $("#fica_stax").toggleClass("noedit").prop("readonly", !$("#fica_stax").prop("readonly"));
+          $("#fica_sditax").toggleClass("noedit").prop("readonly", !$("#fica_sditax").prop("readonly"));
+          $("#ficay_mc").toggleClass("noedit").prop("readonly", !$("#ficay_mc").prop("readonly"));
+          $("#ficay_ss").toggleClass("noedit").prop("readonly", !$("#ficay_ss").prop("readonly"));
+          $("#ficay_tax").toggleClass("noedit").prop("readonly", !$("#ficay_tax").prop("readonly"));
+          $("#ficay_stax").toggleClass("noedit").prop("readonly", !$("#ficay_stax").prop("readonly"));
+          $("#ficay_sditax").toggleClass("noedit").prop("readonly", !$("#ficay_sditax").prop("readonly"));
+
+          $("#ytd_gross").toggleClass("noedit").prop("readonly", !$("#ytd_gross").prop("readonly"));
+          $("#ytd_deductions").toggleClass("noedit").prop("readonly", !$("#ytd_deductions").prop("readonly"));
+          $("#ytd_net_pay").toggleClass("noedit").prop("readonly", !$("#ytd_net_pay").prop("readonly"));
+          $("#total").toggleClass("noedit").prop("readonly", !$("#total").prop("readonly"));
+          $("#deductions").toggleClass("noedit").prop("readonly", !$("#deductions").prop("readonly"));
+          $("#net_pay").toggleClass("noedit").prop("readonly", !$("#net_pay").prop("readonly"));
+          calcCurrent_pay();
+        });
+
+        $("#state").on("change", function() {
+          var states = new States();
+          stateTax = states.stateList[$("#state").val()];
+          if(stateTax.tax > 0) {
+            $("#stax").attr( "style", "");
+          } else {
+            $("#fica_stax").val("");
+            $("#ficay_stax").val("");
+            $("#stax").attr( "style", "visibility: hidden;");
+          }
+          if($("#state").val() == "ca") {
+            $("#sditax").attr( "style", "");
+          } else {
+            $("#fica_sditax").val("");
+            $("#ficay_sditax").val("");
+            $("#sditax").attr( "style", "visibility: hidden;");
+          }
+          calcCurrent_pay();
+        });
+
+        calcCurrent_pay();
+      });
+
+
     }
     if(s==3)
     {
@@ -96,12 +208,15 @@ function onFinish(e1, e2) {
   });
 }
 
+function daysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
 
-
-
-
-
-
+function daysInMonthDate(date) {
+  month = date.getMonth() + 1;
+  year = date.getFullYear();
+  return daysInMonth(month, year);
+}
 
 function validateInput(input, pattern, minLenght, maxLength) {
     r = 0
