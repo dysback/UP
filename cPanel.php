@@ -232,7 +232,11 @@
             $("#net_pay").val("0.00");
             $("#ytd_deductions").val("0.00");
             $("#ytd_net_pay").val("0.00");
+<<<<<<< HEAD
             $("#dep_pay").html(" **0** DOLLARS AND **00** CENTS");
+=======
+
+>>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
 
           } else {
             mode = "E";

@@ -70,21 +70,33 @@ $(document).ready(function(){
 });
 
 function onStep(s) {
+<<<<<<< HEAD
 
+=======
+    //console.log(s, _step);
+>>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
     if(s == 2 && _step == 1)
     {
       $("#step-2").load("template" + a[0].slick.currentSlide + ".php", function() {
         var $input = $("#pay_date").pickadate({
           format: 'mm/dd/yyyy',
         });
+<<<<<<< HEAD
         picker = $input.pickadate('picker');
         pay_date = picker.get('select').obj;
 
+=======
+
+        picker = $input.pickadate('picker');
+
+        //$("#ssn").val("1");
+>>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
         $("#ssn").formatter({
           'pattern': '{{999}}-{{99}}-{{9999}}',
           'persistent': false,
         });
 
+<<<<<<< HEAD
         $("#pay_date").on('change', function() {
           calcCurrent_pay();
           $("#dep_paydate").html(pay_date.format("m/d/Y"));
@@ -93,6 +105,37 @@ function onStep(s) {
         $("#stub_number").on('input', function() {
           console.log($("#stub_number").val());
           $("#dep_stub_number").html($("#stub_number").val());
+=======
+        $("#pay_date").change(function() {
+          pay_date = picker.get('select').obj;
+
+          if(frequency == 1) {
+            pay_date2 = new Date(pay_date - 2 * 86400000);
+            pay_date9 = new Date(pay_date - 8 * 86400000);
+          } else if (frequency == 2) {
+            pay_date2 = new Date(pay_date - 3 * 86400000);
+            pay_date9 = new Date(pay_date - 16 * 86400000);
+
+          } else if (frequency == 3) {
+            pay_date2 = new Date(pay_date - 3 * 86400000);
+            var md = daysInMonthDate(pay_date2);
+            md = Math.round(md / 2) + 2;
+            pay_date9 = new Date(pay_date - md * 86400000);
+
+          } else if (frequency == 4) {
+            pay_date2 = new Date(pay_date - 3 * 86400000);
+            var md = daysInMonthDate(pay_date2);
+            md = md + 2;
+            pay_date9 = new Date(pay_date - md * 86400000);
+
+          } else if (frequency == 5) {
+            pay_date2 = new Date(pay_date - 3 * 86400000);
+            md = 365;
+            pay_date9 = new Date(pay_date - md * 86400000);
+          }
+          //console.log(frequency, pay_date, pay_date2, pay_date9);
+          $("#reporting_period").val(pay_date9.format("m/d/Y") + " - " + pay_date2.format("m/d/Y"));
+>>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
         });
 
         $("#rate").on('input', function() {
@@ -110,6 +153,7 @@ function onStep(s) {
           calcCurrent_pay();
         });
 
+<<<<<<< HEAD
         $("#nos").on("change", function() {
           calcCurrent_pay();
         });
@@ -143,6 +187,11 @@ function onStep(s) {
           $(".depo_esa").html($("#employee_address").val());
         });
 
+=======
+        $("#period").on("change", function() {
+          calcCurrent_pay();
+        })
+>>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
         $("#auto").on("change", function() {
           auto = !auto;
 

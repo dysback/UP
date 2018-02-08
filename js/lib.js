@@ -97,6 +97,7 @@ function setOpionNrRange(selector, start, end, step = 1, replaceExisting = true)
 function getNumber(selector) {
   return 1 * $(selector).val();
 }
+<<<<<<< HEAD
 
 function getStubDate(startDate, index, frequency) {
   var date = new Date(startDate);
@@ -170,3 +171,5 @@ function getStartDate(pay_date, freq) {
   }
   return pay_date9;
 }
+=======
+>>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
