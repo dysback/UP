@@ -234,11 +234,8 @@ select.input-xxs {
   margin-top: 20px;
 }
 
-<<<<<<< HEAD
-#pay_date_root, .picker--focused{
-=======
-#pay_date_root {
->>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
+
+#pay_date_root, .picker--focused {
   top: unset;
 }
 
@@ -272,7 +269,6 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield;
 }
-<<<<<<< HEAD
 .add-check {
   /*
   display: inline-block;
@@ -286,5 +282,3 @@ input[type=number] {
   margin: 3px 10px;
   background-color: #fff;
 }
-=======
->>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87

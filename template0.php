@@ -11,11 +11,9 @@
                     <table class="midpad" style="margin-top: 20px;">
                         <tr>
                             <td><input type="text" name="company" placeholder="Company name here" style="width:500px; font-size:16px;" /></td>
-<<<<<<< HEAD
                             <td style="text-align: right; color: #09c;"># <input type="text" name="stub_number" id="stub_number" value="1243" /></td>
-=======
-                            <td style="text-align: right; color: #09c;"># <input type="text" name="stub_number" value="1243" /></td>
->>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
+                            <!--<td style="text-align: right; color: #09c;"># <input type="text" name="stub_number" value="1243" /></td>-->
+
                         </tr>
                         <tr>
                             <td><input type="text" name="company_address" placeholder="Company address here" style="width:500px; font-size:16px;" /></td>
