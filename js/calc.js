@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function calcCurrent_pay() {
 
   if(typeof auto === 'undefined' || !auto) {
@@ -5,10 +6,19 @@ function calcCurrent_pay() {
   }
   var hours = $("#hours").val();
   var cp = ($("#rate").val() * hours).toFixed(2);
+=======
+function calcCurrent_pay()
+{
+  if(!auto) {
+    return;
+  }
+  var cp = ($("#rate").val() * $("#hours").val()).toFixed(2);
+>>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
   $("#current_pay").val(cp);
   var tax = new FederalTax();
   var freq = tax.frequency[$("#frequency").val()].periods;
   var periods = $("#period").val();
+<<<<<<< HEAD
 
   pay_date = picker.get('select').obj;
   pay_date2 = getEndDate(pay_date, frequency);
@@ -33,6 +43,24 @@ function calcCurrent_pay() {
 
   $("#ytd_gross").val((cp * periods).toFixed(2));
   $("#total").val(cp);
+=======
+  console.log(cp, " TAX: ", tax.getTax(cp), tax.frequency, $("#frequency").val(), tax.frequency[$("#frequency").val()],
+    tax.frequency[$("#frequency").val()].periods);
+  $("#fica_mc").val((cp * .0145).toFixed(2));
+  $("#fica_ss").val((cp * .062).toFixed(2));
+  $("#fica_tax").val((tax.getTax(cp * freq) / freq).toFixed(2));
+  $("#ficay_mc").val(($("#fica_mc").val() * periods).toFixed(2));
+  $("#ficay_ss").val(($("#fica_ss").val() * periods).toFixed(2));
+  $("#ficay_tax").val(($("#fica_tax").val() * periods).toFixed(2));
+
+
+  $("#ytd_gross").val((cp * periods).toFixed(2));
+  $("#total").val(cp);
+  $("#deductions").val((1 * $("#fica_mc").val() + 1 * $("#fica_ss").val() + 1 * $("#fica_tax").val()).toFixed(2));
+  $("#net_pay").val((cp - $("#deductions").val()).toFixed(2));
+  $("#ytd_deductions").val((1 * $("#ficay_mc").val() + 1 * $("#ficay_ss").val() + 1 * $("#ficay_tax").val()).toFixed(2));
+  $("#ytd_net_pay").val((cp * periods - $("#ytd_deductions").val()).toFixed(2));
+>>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
 
   var states = new States();
   stateTax = states.stateList[$("#state").val()];
@@ -50,6 +78,7 @@ function calcCurrent_pay() {
     $("#ficay_sditax").val((sdi * periods).toFixed(2));
 
   }
+<<<<<<< HEAD
   $("#additional-checks").html("");
   //console.log(pay_date);
   for(var i = 1; i < $("#nos").val(); i++) {
@@ -86,6 +115,15 @@ function calcCurrent_pay() {
   });
 
 }
+=======
+
+
+
+
+}
+
+
+>>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
 
 
 $(function() {
