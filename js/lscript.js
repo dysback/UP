@@ -155,17 +155,30 @@ function onStep(s) {
       $("#auto").on("change", function() {
         auto = !auto;
 
-        $("#current_pay").toggleClass("noedit").prop("readonly", !$("#current_pay").prop("readonly"));
-        $("#fica_mc").toggleClass("noedit").prop("readonly", !$("#fica_mc").prop("readonly"));
-        $("#fica_ss").toggleClass("noedit").prop("readonly", !$("#fica_ss").prop("readonly"));
-        $("#fica_tax").toggleClass("noedit").prop("readonly", !$("#fica_tax").prop("readonly"));
-        $("#fica_stax").toggleClass("noedit").prop("readonly", !$("#fica_stax").prop("readonly"));
-        $("#fica_sditax").toggleClass("noedit").prop("readonly", !$("#fica_sditax").prop("readonly"));
-        $("#ficay_mc").toggleClass("noedit").prop("readonly", !$("#ficay_mc").prop("readonly"));
-        $("#ficay_ss").toggleClass("noedit").prop("readonly", !$("#ficay_ss").prop("readonly"));
-        $("#ficay_tax").toggleClass("noedit").prop("readonly", !$("#ficay_tax").prop("readonly"));
-        $("#ficay_stax").toggleClass("noedit").prop("readonly", !$("#ficay_stax").prop("readonly"));
-        $("#ficay_sditax").toggleClass("noedit").prop("readonly", !$("#ficay_sditax").prop("readonly"));
+        $(".current_pay").toggleClass("noedit").prop("readonly", !$("#current_pay").prop("readonly"));
+        $(".current_pay1").toggleClass("noedit1").prop("readonly", !$("#current_pay").prop("readonly"));
+        $(".fica_mc").toggleClass("noedit").prop("readonly", !$("#fica_mc").prop("readonly"));
+        $(".fica_ss").toggleClass("noedit").prop("readonly", !$("#fica_ss").prop("readonly"));
+        $(".fica_tax").toggleClass("noedit").prop("readonly", !$("#fica_tax").prop("readonly"));
+        $(".fica_stax").toggleClass("noedit").prop("readonly", !$("#fica_stax").prop("readonly"));
+        $(".fica_sditax").toggleClass("noedit").prop("readonly", !$("#fica_sditax").prop("readonly"));
+        $(".ficay_mc").toggleClass("noedit").prop("readonly", !$("#ficay_mc").prop("readonly"));
+        $(".ficay_ss").toggleClass("noedit").prop("readonly", !$("#ficay_ss").prop("readonly"));
+        $(".ficay_tax").toggleClass("noedit").prop("readonly", !$("#ficay_tax").prop("readonly"));
+        $(".ficay_stax").toggleClass("noedit").prop("readonly", !$("#ficay_stax").prop("readonly"));
+        $(".ficay_sditax").toggleClass("noedit").prop("readonly", !$("#ficay_sditax").prop("readonly"));
+
+        $(".fica_mc1").toggleClass("noedit1").prop("readonly", !$("#fica_mc").prop("readonly"));
+        $(".fica_ss1").toggleClass("noedit1").prop("readonly", !$("#fica_ss").prop("readonly"));
+        $(".fica_tax1").toggleClass("noedit1").prop("readonly", !$("#fica_tax").prop("readonly"));
+        $(".fica_stax1").toggleClass("noedit1").prop("readonly", !$("#fica_stax").prop("readonly"));
+        $(".fica_sditax1").toggleClass("noedit1").prop("readonly", !$("#fica_sditax").prop("readonly"));
+        $(".ficay_mc1").toggleClass("noedit1").prop("readonly", !$("#ficay_mc").prop("readonly"));
+        $(".ficay_ss1").toggleClass("noedit1").prop("readonly", !$("#ficay_ss").prop("readonly"));
+        $(".ficay_tax1").toggleClass("noedit1").prop("readonly", !$("#ficay_tax").prop("readonly"));
+        $(".ficay_stax1").toggleClass("noedit1").prop("readonly", !$("#ficay_stax").prop("readonly"));
+        $(".ficay_sditax1").toggleClass("noedit1").prop("readonly", !$("#ficay_sditax").prop("readonly"));
+
 
         $("#ytd_gross").toggleClass("noedit").prop("readonly", !$("#ytd_gross").prop("readonly"));
         $("#ytd_deductions").toggleClass("noedit").prop("readonly", !$("#ytd_deductions").prop("readonly"));

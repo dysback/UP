@@ -251,7 +251,10 @@
       offColor: "psgblue",
       onSwitchChange: function() {
         $("#sAnnual").toggle();
-        $("#current_pay").toggleClass("noedit");
+
+        //$("#current_pay").toggleClass("noedit");
+        $(".current_pay0").toggleClass("noedit");
+        $(".current_pay1").toggleClass("noedit1");
         $("#hours").toggle();
         if(sMode == "H") {
           sMode = "S";

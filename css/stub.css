@@ -243,6 +243,11 @@ select.input-xxs {
   border: none !important;
   background-color: #fff !important;
 }
+.noedit1 {
+  border: none !important;
+  background-color: #ddd !important;
+}
+
 
 .hebo th {
   border: 1px solid #09c;

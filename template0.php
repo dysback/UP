@@ -5,8 +5,9 @@
   $today2->sub(new DateInterval("P2D"));
   $today9 = new DateTime("today");
   $today9->sub(new DateInterval("P8D"));
-
+  $tId = "";
  ?>
+
                 <form method="POST" action="Paycheck.php">
                     <table class="midpad" style="margin-top: 20px;">
                         <tr>
@@ -66,7 +67,7 @@
                                 <td><span style="font-size: 14px; font-weight: 600;">Gross Earnings</span></td>
                                 <td><input type="number" step="0.01" min="0" id="rate" name="rate" value="11.2" /></td>
                                 <td><input type="number" step="0.01" min="0" id="hours" name="hours" value="40" /></td>
-                                <td><input type="number" step="0.01" min="0" id="current_pay" name="current_pay" value="448.00" class="noedit" readonly="readonly" /></td>
+                                <td><input type="number" step="0.01" min="0" class="current_pay0" id="current_pay" name="current_pay" value="448.00" class="noedit" readonly="readonly" /></td>
                                 <td class="blues"><span style="font-size: 14px; font-weight: 600;">Statutory Deductions</span>
                                   <br />Fica - Medicare
                                   <br />Fica - Social Security
@@ -76,18 +77,18 @@
 
                                 </td>
                                 <td>
-                                    <br /><input type="number" class="noedit right" readonly="readonly" name="fica_mc" id="fica_mc" />
-                                    <br /><input type="number" class="noedit right" readonly="readonly" name="fica_ss" id="fica_ss" />
-                                    <br /><input type="number" class="noedit right" readonly="readonly" name="fica_tax" id="fica_tax" />
-                                    <br /><input type="number" class="noedit right" readonly="readonly" name="fica_stax" id="fica_stax" />
-                                    <br /><input type="number" class="noedit right" readonly="readonly" name="fica_sditax" id="fica_sditax" />
+                                    <br /><input type="number" class="noedit right fica_mc" readonly="readonly" name="fica_mc" id="fica_mc" />
+                                    <br /><input type="number" class="noedit right fica_ss" readonly="readonly" name="fica_ss" id="fica_ss" />
+                                    <br /><input type="number" class="noedit right fica_tax" readonly="readonly" name="fica_tax" id="fica_tax" />
+                                    <br /><input type="number" class="noedit right fica_stax" readonly="readonly" name="fica_stax" id="fica_stax" />
+                                    <br /><input type="number" class="noedit right fica_sditax" readonly="readonly" name="fica_sditax" id="fica_sditax" />
                                 </td>
                                 <td>
-                                    <br /><input type="number" class="noedit right" readonly="readonly" name="ficay_mc" id="ficay_mc" />
-                                    <br /><input type="number" class="noedit right" readonly="readonly" name="ficay_ss" id="ficay_ss" />
-                                    <br /><input type="number" class="noedit right" readonly="readonly" name="ficay_tax" id="ficay_tax" />
-                                    <br /><input type="number" class="noedit right" readonly="readonly" name="ficay_stax" id="ficay_stax" />
-                                    <br /><input type="number" class="noedit right" readonly="readonly" name="ficay_sditax" id="ficay_sditax" />
+                                    <br /><input type="number" class="noedit right ficay_mc" readonly="readonly" name="ficay_mc" id="ficay_mc" />
+                                    <br /><input type="number" class="noedit right ficay_ss" readonly="readonly" name="ficay_ss" id="ficay_ss" />
+                                    <br /><input type="number" class="noedit right ficay_tax" readonly="readonly" name="ficay_tax" id="ficay_tax" />
+                                    <br /><input type="number" class="noedit right ficay_stax" readonly="readonly" name="ficay_stax" id="ficay_stax" />
+                                    <br /><input type="number" class="noedit right ficay_sditax" readonly="readonly" name="ficay_sditax" id="ficay_sditax" />
                                 </td>
                             </tr>
                         </tbody>
@@ -123,24 +124,15 @@
                               <tr>
                                 <td style="padding: 20px 10px 0px 10px; width: 60%; text-align: left; vertical-align:bottom; ">
                                   <div style="border: 2px solid #09e; padding: 5px; width: 100%; ">
-<<<<<<< HEAD
                                     <span style="font-size: 16px; font-weight:600;" class="blues">PAY </span>
                                     <span style="font-size: 16px; font-weight:600;" class="dep_pay">....</span>
-=======
-                                    <span style="font-size: 16px; font-weight:600;" class="blues">PAY</span>....
->>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
                                   </div>
                                   <table>
                                     <tr>
                                       <td style="width: 150px;" class="blues">TO THE ORDER OF:</td>
                                       <td>
-<<<<<<< HEAD
                                         <span class="depo_en" >Employee name</span><br />
                                         <span class="depo_esa">Employee street address</span>
-=======
-                                        Employee name<br />
-                                        Employee street address
->>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
                                       </td>
                                     </tr>
                                   </table>
@@ -152,13 +144,8 @@
                                       <td>CHECK NUMBER</td>
                                     </tr>
                                     <tr class="grays">
-<<<<<<< HEAD
                                       <td><span id="dep_paydate"><?php echo $today->format("m/d/Y"); ?></span></td>
                                       <td><span id="dep_stub_number">1243</span></td>
-=======
-                                      <td>12/09/2017</td>
-                                      <td>10215</td>
->>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
                                     </tr>
                                     <tr>
                                       <td colspan="2" style="border-bottom: 2px solid #09c; ">
@@ -173,8 +160,5 @@
                           </tbody>
                       </table>
                     </div>
-<<<<<<< HEAD
                     <div id="additional-checks"></div>
-=======
->>>>>>> 92f77e99fc89b462484a68aa02361f9ade770a87
                 </form>
