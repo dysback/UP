@@ -1,5 +1,6 @@
 <?php
 require("lib.php");
+$today = new DateTime("today");
 ?>
 
 <div class="form1">
@@ -67,18 +68,22 @@ require("lib.php");
                     <br />Fica - Medicare
                     <br />Fica - Social Security
                     <br />Federal Tax
-                    <br />State Tax</td>
+                    <br /><span id="stax" <?php echo request("fica_stax") ? '': 'style="visibility: hidden;"'; ?> >State Tax W/H</span>
+                    <br /><span id="sditax" <?php echo request("fica_sditax") ? '': 'style="visibility: hidden;"'; ?> >CALIFORNIA SDI TAX</span>
+                </td>
                 <td>
                     <br /><?php echo request("fica_mc"); ?>
                     <br /><?php echo request("fica_ss"); ?>
                     <br /><?php echo request("fica_tax"); ?>
-                    <br /><?php echo request("fica_ftax"); ?>
+                    <br /><?php echo request("fica_stax"); ?>
+                    <br /><?php echo request("fica_sditax"); ?>
                 </td>
                 <td>
                   <br /><?php echo request("ficay_mc"); ?>
                   <br /><?php echo request("ficay_ss"); ?>
                   <br /><?php echo request("ficay_tax"); ?>
-                  <br /><?php echo request("ficay_ftax"); ?>
+                  <br /><?php echo request("ficay_stax"); ?>
+                  <br /><?php echo request("ficay_sditax"); ?>
                 </td>
             </tr>
         </tbody>
@@ -104,24 +109,48 @@ require("lib.php");
             </tr>
         </tbody>
 
-    </table>
-    <br />
+        <?php if(request("deposit") == "on") { ?>
+        <div id="deposit-slip" style="display: block;">
+          <table class="border top-radius bottom-radius minipad grays" style="height: 120px;">
+              <tbody>
+                  <tr>
+                    <td style="padding: 20px 10px 0px 10px; width: 60%; text-align: left; vertical-align:bottom; ">
+                      <div style="border: 2px solid #09e; padding: 5px; width: 100%; ">
+                        <span style="font-size: 16px; font-weight:600;" class="blues">PAY </span>
+                        <span style="font-size: 16px; font-weight:600;" class="dep_pay">....</span>
+                      </div>
+                      <table>
+                        <tr>
+                          <td style="width: 150px;" class="blues">TO THE ORDER OF:</td>
+                          <td>
+                            <span class="depo_en" >Employee name</span><br />
+                            <span class="depo_esa">Employee street address</span>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td style="padding-right:10px;" >
+                      <table>
+                        <tr class="blues" style="border-bottom: 1px solid">
+                          <td style="border-right: 1px solid">CHECK DATE</td>
+                          <td>CHECK NUMBER</td>
+                        </tr>
+                        <tr class="grays">
+                          <td><span id="dep_paydate"><?php echo $today->format("m/d/Y"); ?></span></td>
+                          <td><span id="dep_stub_number"><?php echo request("stub_number") ?></span></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" style="border-bottom: 2px solid #09c; ">
+                          <span class="blues">THIS IS NOT A CHECK</span><br />
+                          <span class="grays" style="border: 1px solid;">NON-NEGOTIABLE</span><br />
+                          <span class="blues">VOID</span>
+                          <td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+      <?php } ?>
 </div>
-
-
-
-
-<table>
-    <tr>
-        <td><?php echo request("company");  ?></td>
-        <td>#<?php echo request("stub_number");  ?></td>
-    </tr>
-    <tr>
-        <td><?php echo request("company_address");  ?></td>
-        <td>Earnings statement</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-    </tr>
-</table>

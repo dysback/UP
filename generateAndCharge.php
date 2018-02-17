@@ -4,9 +4,7 @@ require_once "authorize.php";
 require_once 'vendor/autoload.php';
 require_once "createPDF.php";
 
-$filename = "dydy.pdf";//time() . ".pdf";
-$PDFresp = createPDF(Config::$PDF_LOCATION . "/$filename");
-die($PDFresp);
+//die($PDFresp);
 //die("RQ: " . print_r($_REQUEST, true));
 $amount = Config::$TRANSACTION_AMOUNT["AMOUNT_PAYCHECK"];
 
@@ -17,7 +15,14 @@ $error->errorDescription ="Transaction completed successfully";
 $error->transactionLog = array();
 $error->PDFurl = "";
 $error->transactionid = 0;
+if(1==1) {
+  $filename = "dydy.pdf";//time() . ".pdf";
+  $PDFresp = createPDF(Config::$PDF_LOCATION . "/$filename", "F", request("design"));
+  $error->PDFurl = $PDFresp;
+  $error->errorCode = 1;
 
+} else
+{
 writeLog("AUTHORIZING TRANSACTION: " . print_r(array($amount, str_replace("-", "", request(cardNumber)), "20" . request("date"), request("cvc")
 , request("pfirstname"), request("plastname"), request("street"), request("city"), request("state"), request("zip")
 , request("country"), request("email")), Config::LOG_LEVEL_INFO), true);
@@ -92,5 +97,6 @@ if($e->getMessages()->getMessage()[0]->getCode() == "I00001" && $errors == 0 && 
   }
 }
 writeLog("RETURNED MESSAGE: " . print_r($error, true));
+}
 header('Content-Type: application/json');
 echo json_encode($error);

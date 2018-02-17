@@ -226,11 +226,15 @@ var error;
 
 function onFinish(e1, e2) {
   var formP = $(".stepy-basic").serialize();
-  var url = "generateAndCharge.php?" + formP + "&" + formQ;
+  var url = "generateAndCharge.php?design=" + design + "&" + formP + "&" + formQ;
   //console.log("url", url);
   $.ajax({
     url: url,
   }).done(function(data) {
+    //console.log(data);
+    //console.log(data.errorDescription, data.message, "success");
+    //swal(data.errorDescription, data.message, "success");
+    //return;
     error = data;
     if (data.errorCode == "1") {
       swal(data.errorDescription, data.message, "success");

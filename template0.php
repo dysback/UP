@@ -7,7 +7,10 @@
   $today9->sub(new DateInterval("P8D"));
   $tId = "";
  ?>
-
+ <script>
+   //$("#depo-span").hide();
+   design = 0;
+ </script>
                 <form method="POST" action="Paycheck.php">
                     <table class="midpad" style="margin-top: 20px;">
                         <tr>
@@ -72,7 +75,7 @@
                                   <br />Fica - Medicare
                                   <br />Fica - Social Security
                                   <br />Federal Tax
-                                  <br /><span id="stax" style="visibility: hidden;" >State Tax</span>
+                                  <br /><span id="stax" style="visibility: hidden;" >State Tax W/H</span>
                                   <br /><span id="sditax" style="visibility: hidden;" >CALIFORNIA SDI TAX</span>
 
                                 </td>

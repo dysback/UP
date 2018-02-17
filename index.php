@@ -111,7 +111,7 @@
 
 									<div id="slider-nav" class="slider-nav">
 										<div><img id="select-temp" src="/img/paycheck1.PNG" /></div>
-										<div><img src="/img/paycheck2.PNG" /></div>
+										<!--div><img src="/img/paycheck2.PNG" /></div-->
 									</div>
 
 								</div>

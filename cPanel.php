@@ -190,7 +190,8 @@
     </span>
   </span>
   <br /><br />
-  Deposit slip (+4.99): <input type="checkbox" name="deposit" id="deposit" >
+  <span id="depo-span">Deposit slip (+4.99): <input type="checkbox" name="deposit" id="deposit" >
+  </span>
 </div>
 <script type="text/javascript" src="/js/taxes.js"></script>
 <script>

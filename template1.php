@@ -7,6 +7,10 @@
   $today9->sub(new DateInterval("P8D"));
   $tId = "1";
 ?>
+<script>
+  $("#depo-span").hide();
+  design = 1;
+</script>
 <form method="POST" class="form1" action="Paycheck.php">
     <table class="midpad" style="margin-top: 20px;">
 
@@ -78,7 +82,7 @@
                                     <br />Fica - Medicare
                                     <br />Fica - Social Security
                                     <br />Federal Tax
-                                    <br /><span id="stax" style="visibility: hidden;" >State Tax</span>
+                                    <br /><span id="stax" style="visibility: hidden;" >State Tax W/H</span>
                                     <br /><span id="sditax" style="visibility: hidden;" >CALIFORNIA SDI TAX</span>
                                 </td>
 
@@ -146,5 +150,49 @@
                         </tbody>
 
                     </table>
-                    <br />
+                    <div id="deposit-slip">
+                      <table class="border top-radius bottom-radius minipad grays" style="height: 120px;">
+                          <tbody>
+                              <tr>
+                                <td style="padding: 20px 10px 0px 10px; width: 60%; text-align: left; vertical-align:bottom; ">
+                                  <div style="border: 2px solid #09e; padding: 5px; width: 100%; ">
+                                    <span style="font-size: 16px; font-weight:600;" class="blues">PAY </span>
+                                    <span style="font-size: 16px; font-weight:600;" class="dep_pay">....</span>
+                                  </div>
+                                  <table>
+                                    <tr>
+                                      <td style="width: 150px;" class="blues">TO THE ORDER OF:</td>
+                                      <td>
+                                        <span class="depo_en" >Employee name</span><br />
+                                        <span class="depo_esa">Employee street address</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                                <td style="padding-right:10px;" >
+                                  <table>
+                                    <tr class="blues" style="border-bottom: 1px solid">
+                                      <td style="border-right: 1px solid">CHECK DATE</td>
+                                      <td>CHECK NUMBER</td>
+                                    </tr>
+                                    <tr class="grays">
+                                      <td><span id="dep_paydate"><?php echo $today->format("m/d/Y"); ?></span></td>
+                                      <td><span id="dep_stub_number">1243</span></td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="2" style="border-bottom: 2px solid #09c; ">
+                                      <span class="blues">THIS IS NOT A CHECK</span><br />
+                                      <span class="grays" style="border: 1px solid;">NON-NEGOTIABLE</span><br />
+                                      <span class="blues">VOID</span>
+                                      <td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                    </div>
+                    <div id="additional-checks"></div>
+
                 </div>
+</form>

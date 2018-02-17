@@ -103,7 +103,7 @@ $today = new DateTime("today");
                               <br />Fica - Medicare
                               <br />Fica - Social Security
                               <br />Federal Tax
-                              <br /><span id="stax" <?php echo request("fica_stax") ? '': 'style="visibility: hidden;"'; ?> >State Tax</span>
+                              <br /><span id="stax" <?php echo request("fica_stax") ? '': 'style="visibility: hidden;"'; ?> >State Tax W/H</span>
                               <br /><span id="sditax" <?php echo request("fica_sditax") ? '': 'style="visibility: hidden;"'; ?> >CALIFORNIA SDI TAX</span>
 
                             </td>
