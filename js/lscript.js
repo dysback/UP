@@ -42,13 +42,13 @@ $(document).ready(function() {
 
   });
 
-  $("#cardNumber").keyup(function() {
+  $("body").on('keyup', "#cardNumber", function() {
     a = $(this).val();
 
     $(this).val(validateInput(a, "xxxx-xxxx-xxxx-xxxx", 16, 16));
   });
 
-  $("#date").keyup(function() {
+  $("body").on('keyup', "#date", function() {
     $(this).val(validateInput($(this).val(), "xx/xx", 4, 4));
   });
 
@@ -220,7 +220,14 @@ function onStep(s) {
       $(".depo_esa").html($("#employee_address").val());
     });
   }
+  if (s == 4) {
+    console.log("četri");
+    $("#step-4").load("paymentForm.php?" + formQ, function() {
+      console.log("Učitano");
+    });
+  }
   _step = s;
+
 }
 var error;
 

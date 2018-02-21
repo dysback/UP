@@ -19,6 +19,7 @@ class Config {
     static $TRANSACTION_AMOUNT          = array(
                                                     "AMOUNT_TEST"          =>  0.01,
                                                     "AMOUNT_PAYCHECK"      =>  0.02,
+                                                    "AMOUNT_SLIP"          =>  0.01,
                                                     "AMOUNT_SUPER_EXTRA"   =>  0.03
                                           );
 
